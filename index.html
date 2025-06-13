@@ -2,15 +2,15 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>文件下载</title>
     <style>
         :root {
-            --pdf-color: #e64c3c;
-            --exe-color: #2563eb;
-            --hover-opacity: 0.9;
+            --pdf-color: #ff9e9a;     /* 浅红色 - PDF按钮 */
+            --exe-color: #72a7ff;     /* 浅蓝色 - EXE按钮 */
+            --hover-opacity: 0.85;    /* 悬停透明度 */
             --border-radius: 8px;
-            --box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            --box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             --font-size: 16px;
         }
         * {
@@ -41,7 +41,7 @@
         }
         .download-container:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
         }
         .btn {
             display: flex;
@@ -55,53 +55,58 @@
             font-weight: 500;
             cursor: pointer;
             text-decoration: none;
-            color: white;
+            color: #333;
             transition: all 0.2s;
             position: relative;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(var(--btn-rgb, 255,255,255), 0.8);
         }
-        .btn::after {
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            background-color: var(--pdf-color); /* 默认颜色，由下面的类覆盖 */
+        }
+        .btn-pdf::before {
+            background-color: var(--pdf-color);
+        }
+        .btn-exe::before {
+            background-color: var(--exe-color);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--btn-rgb, 255,255,255), 0.9);
+        }
+        .btn:active::after {
             content: "";
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255,255,255,0.5);
+            width: 100px;
+            height: 100px;
+            background: rgba(0,0,0,0.05);
             opacity: 0;
             border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-        .btn:active::after {
-            width: 150px;
-            height: 150px;
-            opacity: 0.4;
             transform: scale(0, 0) translate(-50%);
             transition: transform 0.3s, opacity 0.3s;
         }
-        .btn-pdf {
-            background-color: var(--pdf-color);
-        }
-        .btn-pdf:hover {
-            background-color: rgba(var(--pdf-color-rgb, 230, 76, 60), var(--hover-opacity));
-        }
-        .btn-exe {
-            background-color: var(--exe-color);
-        }
-        .btn-exe:hover {
-            background-color: rgba(var(--exe-color-rgb, 37, 99, 235), var(--hover-opacity));
+        .btn:active::after {
+            opacity: 0.2;
+            transform: scale(1, 1) translate(-50%);
         }
         .icon {
             width: 24px;
             height: 24px;
             flex-shrink: 0;
-            display: block; /* 确保img垂直居中 */
         }
-        /* 移动端优化 */
         @media (max-width: 414px) {
             :root {
                 --font-size: 14px;
-                --border-radius: 6px;
             }
             .download-container {
                 padding: 18px;
@@ -116,24 +121,11 @@
                 height: 20px;
             }
         }
-        /* 超小屏适配 */
-        @media (max-width: 320px) {
-            body {
-                padding: 10px;
-            }
-            .download-container {
-                padding: 16px;
-            }
-            .btn {
-                padding: 10px 14px;
-                font-size: 13px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="download-container">
-        <a href="C Primer Plus 第6版 中文版 (c.primer.plus).pdf" class="btn btn-pdf" download>
+        <a href="a.pdf" class="btn btn-pdf" download>
             <img src="pdf.svg" alt="PDF图标" class="icon">
             下载PDF文件
         </a>
