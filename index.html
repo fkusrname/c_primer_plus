@@ -6,11 +6,10 @@
     <title>文件下载</title>
     <style>
         :root {
-            --pdf-color: #ff9e9a;     /* 浅红色 - PDF按钮 */
-            --exe-color: #72a7ff;     /* 浅蓝色 - EXE按钮 */
-            --hover-opacity: 0.85;    /* 悬停透明度 */
+            --pdf-color: #ff7875;     /* 红色 - PDF按钮 */
+            --exe-color: #448AFF;     /* 蓝色 - EXE按钮 */
             --border-radius: 8px;
-            --box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            --box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             --font-size: 16px;
         }
         * {
@@ -37,11 +36,6 @@
             background: white;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .download-container:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
         }
         .btn {
             display: flex;
@@ -55,49 +49,15 @@
             font-weight: 500;
             cursor: pointer;
             text-decoration: none;
-            color: #333;
-            transition: all 0.2s;
+            color: white;
             position: relative;
             overflow: hidden;
-            background-color: white;
-            box-shadow: 0 2px 8px rgba(var(--btn-rgb, 255,255,255), 0.8);
         }
-        .btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
-            background-color: var(--pdf-color); /* 默认颜色，由下面的类覆盖 */
-        }
-        .btn-pdf::before {
+        .btn-pdf {
             background-color: var(--pdf-color);
         }
-        .btn-exe::before {
+        .btn-exe {
             background-color: var(--exe-color);
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(var(--btn-rgb, 255,255,255), 0.9);
-        }
-        .btn:active::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background: rgba(0,0,0,0.05);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(0, 0) translate(-50%);
-            transition: transform 0.3s, opacity 0.3s;
-        }
-        .btn:active::after {
-            opacity: 0.2;
-            transform: scale(1, 1) translate(-50%);
         }
         .icon {
             width: 24px;
@@ -107,6 +67,7 @@
         @media (max-width: 414px) {
             :root {
                 --font-size: 14px;
+                --border-radius: 6px;
             }
             .download-container {
                 padding: 18px;
