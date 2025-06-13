@@ -2,98 +2,24 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>文件下载</title>
     <style>
-        :root {
-            --pdf-color: #ff7875;     /* 红色 - PDF按钮 */
-            --exe-color: #448AFF;     /* 蓝色 - EXE按钮 */
-            --border-radius: 8px;
-            --box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            --font-size: 16px;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
-        .download-container {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            width: 100%;
-            max-width: 500px;
-            padding: 24px;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 14px 20px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: var(--font-size);
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-pdf {
-            background-color: var(--pdf-color);
-        }
-        .btn-exe {
-            background-color: var(--exe-color);
-        }
-        .icon {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
-        @media (max-width: 414px) {
-            :root {
-                --font-size: 14px;
-                --border-radius: 6px;
-            }
-            .download-container {
-                padding: 18px;
-                gap: 12px;
-            }
-            .btn {
-                padding: 12px 16px;
-                gap: 10px;
-            }
-            .icon {
-                width: 20px;
-                height: 20px;
-            }
-        }
+        :root{--b-radius:8px;--f-size:16px;--pdf-c:#ff7875;--exe-c:#448AFF}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,system-ui,"Microsoft YaHei",sans-serif}
+        body{display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f8f9fa;padding:16px}
+        .cont{display:flex;flex-direction:column;gap:12px;width:100%;max-width:450px;padding:20px;background:#fff;border-radius:var(--b-radius);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+        .btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border:none;border-radius:var(--b-radius);font-size:var(--f-size);font-weight:500;cursor:pointer;text-decoration:none;color:#fff}
+        .btn-pdf{background:var(--pdf-c)}
+        .btn-exe{background:var(--exe-c)}
+        @media (max-width:360px){:root{--f-size:14px;--b-radius:6px}.cont{padding:16px;gap:10px}.btn{padding:10px 14px}}
+        @media (min-width:768px){.cont{max-width:550px;padding:28px}.btn{padding:16px 24px;font-size:18px}}
     </style>
 </head>
 <body>
-    <div class="download-container">
-        <a href="a.pdf" class="btn btn-pdf" download>
-            <img src="pdf.svg" alt="PDF图标" class="icon">
-            下载PDF文件
-        </a>
-        <a href="b.exe" class="btn btn-exe" download>
-            <img src="exe.svg" alt="EXE图标" class="icon">
-            下载EXE程序
-        </a>
+    <div class="cont">
+        <a href="C Primer Plus 第6版 中文版 (c.primer.plus).pdf" class="btn btn-pdf" download><img src=＂pdf.svg＂>C Primer Plus 第6版 中文版.pdf</a>
+        <a href="Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup.exe" class="btn btn-exe" download><img src=＂exe.svg＂>Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup.exe</a>
     </div>
 </body>
 </html>
